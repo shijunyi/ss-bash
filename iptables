@@ -1,0 +1,36 @@
+*filter
+
+ #开放本地
+-A INPUT -i lo -j ACCEPT
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+ #配置内网白名单
+-A INPUT -s 10.0.0.0/8 -j ACCEPT
+-A INPUT -s 172.16.0.0/12 -j ACCEPT
+-A INPUT -s 192.168.0.0/16 -j ACCEPT
+
+ #HTTP,HTTPS端口
+-A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 443 -j ACCEPT
+
+ #SSH端口
+-A INPUT -p tcp -m tcp --dport 24447 -j ACCEPT
+
+ #开放PING
+-A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT
+
+
+ #丢弃其他进入数据包
+-A INPUT -j DROP
+
+ #丢弃其他转发数据包
+-A FORWARD -j DROP
+
+ #开放出口（禁止shadowsocks非WEB流量的iptables规则)
+-A OUTPUT -p tcp -m owner --uid-owner suser -m tcp --dport 80 -j ACCEPT
+-A OUTPUT -p tcp -m owner --uid-owner suser -m tcp --dport 443 -j ACCEPT
+-A OUTPUT -m owner --uid-owner suser -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A OUTPUT -p tcp -m owner --uid-owner suser -j REJECT --reject-with tcp-reset
+-A OUTPUT -j ACCEPT
+
+COMMIT
