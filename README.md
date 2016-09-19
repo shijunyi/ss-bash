@@ -27,7 +27,7 @@ setcap 'cap_net_bind_service=+ep' /usr/bin/ss-server
 
 ##### iptables规则
 
-[常用iptables安全规则](https://github.com/shijunyi/ss-bash/iptables)
+[常用iptables安全规则](https://github.com/shijunyi/ss-bash/blob/master/iptables)
 
 ##### 安装
 
