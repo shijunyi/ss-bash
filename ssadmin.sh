@@ -69,8 +69,7 @@ create_json () {
 }
 
 run_ssserver () {
-    $SSSERVER -qq -c $JSON_FILE 2>/dev/null >/dev/null &
-    echo $! > $SSSERVER_PID 
+    $SSSERVER -c $JSON_FILE --forbidden-ip 127.0.0.1,::1 --user suser -d start --log-file /var/log/shadowsocks.log --pid-file $SSSERVER_PID 2>/dev/null >/dev/null & 
 }
 
 check_ssserver () {
