@@ -50,17 +50,16 @@ SS_OUT_RULES=ssoutput
 del_ipt_chains () {
     iptables -F $SS_IN_RULES
     iptables -F $SS_OUT_RULES
-    
-	iptables -D INPUT -p tcp -m tcp --dport 88 -j ssinput
-	iptables -D INPUT -p udp -m udp --dport 88 -j ssinput
-	iptables -D OUTPUT -p tcp -m tcp --sport 88 -j ssoutput
-	iptables -D OUTPUT -p udp -m udp --sport 88 -j ssoutput
-	
-	iptables -D INPUT -p tcp -m tcp --dport 89 -j ssinput
-	iptables -D INPUT -p udp -m udp --dport 89 -j ssinput
-	iptables -D OUTPUT -p tcp -m tcp --sport 89 -j ssoutput
-	iptables -D OUTPUT -p udp -m udp --sport 89 -j ssoutput
-	
+
+    iptables -D INPUT -p tcp -m tcp --dport 88 -j ssinput
+    iptables -D INPUT -p udp -m udp --dport 88 -j ssinput
+    iptables -D OUTPUT -p tcp -m tcp --sport 88 -j ssoutput
+    iptables -D OUTPUT -p udp -m udp --sport 88 -j ssoutput
+
+    iptables -D INPUT -p tcp -m tcp --dport 89 -j ssinput
+    iptables -D INPUT -p udp -m udp --dport 89 -j ssinput
+    iptables -D OUTPUT -p tcp -m tcp --sport 89 -j ssoutput
+    iptables -D OUTPUT -p udp -m udp --sport 89 -j ssoutput
 	
     iptables -X $SS_IN_RULES
     iptables -X $SS_OUT_RULES
@@ -73,14 +72,14 @@ init_ipt_chains () {
 #根据已有的规则选择插入的顺序 
    
     iptables -I INPUT 9 -p tcp -m tcp --dport 88 -j ssinput
-	iptables -I INPUT 10 -p udp -m udp --dport 88 -j ssinput
-	iptables -I OUTPUT 1 -p tcp -m tcp --sport 88 -j ssoutput
-	iptables -I OUTPUT 2 -p udp -m udp --sport 88 -j ssoutput
+    iptables -I INPUT 10 -p udp -m udp --dport 88 -j ssinput
+    iptables -I OUTPUT 1 -p tcp -m tcp --sport 88 -j ssoutput
+    iptables -I OUTPUT 2 -p udp -m udp --sport 88 -j ssoutput
 	
-	iptables -I INPUT 11 -p tcp -m tcp --dport 89 -j ssinput
-	iptables -I INPUT 12 -p udp -m udp --dport 89 -j ssinput
-	iptables -I OUTPUT 3 -p tcp -m tcp --sport 89 -j ssoutput
-	iptables -I OUTPUT 4 -p udp -m udp --sport 89 -j ssoutput
+    iptables -I INPUT 11 -p tcp -m tcp --dport 89 -j ssinput
+    iptables -I INPUT 12 -p udp -m udp --dport 89 -j ssinput
+    iptables -I OUTPUT 3 -p tcp -m tcp --sport 89 -j ssoutput
+    iptables -I OUTPUT 4 -p udp -m udp --sport 89 -j ssoutput
 }
 
 add_rules () {
