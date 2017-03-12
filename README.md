@@ -10,10 +10,11 @@
 #### 使用说明
 
 ##### 安装Shadowsocks(Debian / Ubuntu:)
+apt-get update
 
 apt-get install python-pip
 
-pip install shadowsocks
+pip install https://github.com/shadowsocks/shadowsocks/archive/master.zip
 
 ##### 添加suser用户
 
@@ -21,9 +22,9 @@ adduser --system --disabled-password --disabled-login --no-create-home suser
 
 ##### 非root用户使用1024以下端口
 
-apt-get install setcap
+apt-get install libcap2-bin
 
-setcap 'cap_net_bind_service=+ep' /usr/bin/ss-server
+setcap 'cap_net_bind_service=+ep' /usr/local/bin/ssserver
 
 ##### iptables规则
 
