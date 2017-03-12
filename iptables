@@ -28,9 +28,9 @@
 
 #开放出口（禁止shadowsocks非WEB、dns流量的iptables规则)
 -A OUTPUT -p tcp -m owner --uid-owner suser -m tcp --dport 53 -j ACCEPT
--A OUTPUT -p tcp -m owner --uid-owner suser -m udp --dport 53 -j ACCEPT
+-A OUTPUT -p udp -m owner --uid-owner suser -m udp --dport 53 -j ACCEPT
 -A OUTPUT -p tcp -m owner --uid-owner suser -m tcp --dport 5353 -j ACCEPT
--A OUTPUT -p tcp -m owner --uid-owner suser -m udp --dport 5353 -j ACCEPT
+-A OUTPUT -p udp -m owner --uid-owner suser -m udp --dport 5353 -j ACCEPT
 -A OUTPUT -p tcp -m owner --uid-owner suser -m tcp --dport 80 -j ACCEPT
 -A OUTPUT -p tcp -m owner --uid-owner suser -m tcp --dport 8080 -j ACCEPT
 -A OUTPUT -p tcp -m owner --uid-owner suser -m tcp --dport 443 -j ACCEPT
