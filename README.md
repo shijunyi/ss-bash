@@ -34,6 +34,10 @@ setcap 'cap_net_bind_service=+ep' /usr/local/bin/ssserver
 
 git clone https://github.com/shijunyi/ss-bash
 
+##### iptables开机启动
+
+mv /root/ss-bash/iptables-restore /etc/network/if-pre-up.d/ && chmod 755 /etc/network/if-pre-up.d/iptables-restore
+
 ##### 首次运行时，先新建用户
 
 例如新用户端口为88，89，密码为passwd，流量限制为100GB，执行：
